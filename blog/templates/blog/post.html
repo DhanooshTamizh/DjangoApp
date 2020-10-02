@@ -1,0 +1,32 @@
+
+{%extends "blog/base.html"%}
+
+
+{%block head%}
+	<title>Post</title>
+	{%endblock head%}
+
+
+{%block content%}
+	<br>
+	{% for p in posts %}
+	<div class="card text-white bg-dark mb-3">
+	
+		 <div class="card-header"><img width='40' height='40' class="rounded-circle account-img" src="{{p.author.profile.image.url}}"> <a   style="color: white" class="mr-2" href="#">{{ p.author}}</a>
+		 	<small class="text-muted">{{p.date_posted}}</small>
+		 </div>
+		 
+		 <div class="card-body">
+			
+		<h5 class="card-title"><a  style="color: white"class="article-title" href="{% url 'blog-post-detail' p.id %}">{{p.title}}</a></h5>	
+			
+		<p class="card-text">{{p.content}}</p>
+	    	
+		<a href="{% url 'blog-post-detail' p.id %}" class="btn btn-success">  Details </a>
+		<a style="right: 20px;position: absolute;"href="{{ p.git_link }}" class="btn btn-primary">   view code</a>	
+			
+			
+		</div>
+	</div>
+	{%endfor%}
+{%endblock content%}

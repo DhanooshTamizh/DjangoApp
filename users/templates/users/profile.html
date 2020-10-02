@@ -1,0 +1,56 @@
+{%extends "blog/base.html"%}
+{%load crispy_forms_tags%}
+
+{%block head%}
+	<title>Profile</title>
+	{%endblock %}
+
+
+{%block content%}
+<br>
+	<div class="container">
+	<div class="card text-white bg-dark mb-3">
+	
+		 <div class="card-header"><a   style="color: white" class="mr-2" href="#">User Details</a>
+		 	
+		 </div>
+		 
+		 <div class="card-body">
+			
+		<h5 class="card-title"><img class="rounded-circle account-img"  src="{{user.profile.image.url}}" width="50" height="50"> {{user.username}}</h5>	
+			
+		<p class="card-text">{{user.email}}</p>
+	    	
+		
+		<form method='POST' enctype="multipart/form-data">
+		{%csrf_token%}
+		<fieldset class="form-group">
+			<legend class='border-bottom mb-4'> Update Profile
+				
+			</legend>
+			{{ u_form|crispy }}
+			{{ p_form|crispy }}
+		</fieldset>
+
+		<div class="form-group">
+			<button class='btn btn-outline-info' type="submit">Update</button>
+		</div>
+
+	</form>	
+			
+		</div>
+	</div>
+</div>
+	
+{%endblock content%}
+
+<style type="text/css">
+	label{
+		color:white;
+
+	}
+	legend{
+		color:white;
+	}
+
+</style>

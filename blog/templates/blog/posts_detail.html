@@ -1,0 +1,62 @@
+{%extends "blog/base.html"%}
+
+{%load crispy_forms_tags%}
+{%block head%}
+	<title>Post Details</title>
+{%endblock%}
+
+
+{%block content%}
+	<br>
+	    <div class="card text-white bg-dark mb-3">
+	    	<div class="card-header"><img width='40' height='40' class="rounded-circle account-img" src="{{posts.author.profile.image.url}}"><a   style="color: white" class="mr-2" href="#">{{posts.author}}</a>
+	    		<small class="text-muted">{{posts.date_posted}}</small>
+	    	</div>
+
+	    	<div class="card-body">
+	    		<h2 class="card-title">{{posts.title}}</h2>
+	    		<p class="card-text">{{posts.content}}</p>
+	    		<a href="{% url 'blog-post-update' posts.id %}" class="btn btn-primary">   Edit </a>
+				<a href="{% url 'blog-post-delete' posts.id %}" class="btn btn-danger" > Delete </a>
+				<hr>
+				<div class="form-inline">
+					<form class="form-inline" method="POST" action="{% url 'like_post' posts.id %}">
+						{%csrf_token%}
+						<button class="btn btn-primary btn-sm" name='likes' value="{{posts.id}}">
+							<span class="glyphicon glyphicon-thumbs-up"></span>Like</button>    
+							 {{posts.likes.count}} likes
+					</form>
+					<br>
+				</div>
+
+					<form   method="POST">
+						{%csrf_token%}
+						{{  comment_form|crispy}}
+						
+						
+						<button class='btn btn-primary btn-sm' type="submit">Post</button>
+						
+						
+
+					</form>
+				
+				
+				{% for com in comments%}
+					<strong>{{com.user}}</strong><br>
+					{{com.comments}}<small class="text-muted"></small>
+					<br>
+				{%endfor%}
+
+
+				{% if posts.id == 9 %}
+				<a style="right: 40px;position: absolute;"href="{% url 'hand-home' %}" class="btn btn-primary"> Project Demo</a>
+				{% endif %}
+	    	</div>
+	    </div>
+		
+
+
+{%endblock%}
+</body>
+
+</html>
