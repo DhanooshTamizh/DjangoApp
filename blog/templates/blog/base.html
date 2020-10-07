@@ -65,13 +65,15 @@
   <div class="sidebar">
     <div class="container">
             <div class="content-section">
-              <h3 style="color:white">Our Sidebar</h3>
+              <h3 style="color:white">Sidebar</h3>
               <p class='text-muted'>You can put any information here you'd like.
                 <ul class="list-group">
                   <li  class="card text-white bg-dark mb-3"><a style="color: white" href="{% url 'blog-post' %}">Latest Posts</a></li>
-                  <li class="card text-white bg-dark mb-3">Announcements</li>
-                  <li class="card text-white bg-dark mb-3">Calendars</li>
-                  <li class="card text-white bg-dark mb-3">etc</li>
+                  {% if user.is_authenticated %}
+                  <li class="card text-white bg-dark mb-3"> <a style="color: white"  href="{% url 'profile' %}">Your Account <span class="sr-only">(current)</span></a>
+                  {% endif %}
+                  <li class="card text-white bg-dark mb-3">Join us today</li>
+                  <li class="card text-white bg-dark mb-3">Guidelines</li>
                 </ul>
               </p>
             </div>
