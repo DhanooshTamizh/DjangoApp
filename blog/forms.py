@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
 			widgets = {
 
 					'title' : forms.TextInput(attrs={'class':'form-control'}),
-					'content' : forms.TextInput(attrs={'class':'form-control'}),
+					'content' : forms.Textarea(attrs={'class':'form-control'}),
 					'git_link' : forms.TextInput(attrs={'class':'form-control'}),
 
 
